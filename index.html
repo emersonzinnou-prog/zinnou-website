@@ -1,66 +1,362 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Name | Broker</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alex Y Zinnou | Tops Realty</title>
+
   <style>
-    body {
+    :root{
+      --navy:#0b1f3a;
+      --gold:#c7a44a;
+      --bg:#0a1323;
+      --card:#0f2343;
+      --text:#eef3ff;
+      --muted:#c9d2e8;
+      --border:rgba(255,255,255,.12);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
       font-family: Arial, sans-serif;
-      margin: 0;
-      text-align: center;
+      background: linear-gradient(180deg, var(--bg), #070d18);
+      color: var(--text);
+      line-height:1.5;
     }
 
-    header {
-      background: #003366;
-      color: white;
-      padding: 20px;
+    a{ color:inherit; text-decoration:none; }
+    .container{
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0 18px;
     }
 
-    .hero {
-      padding: 60px 20px;
+    /* Top bar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(7,13,24,.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 12px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 0;
+    }
+    .mark{
+      width:40px; height:40px;
+      border: 2px solid var(--gold);
+      border-radius: 10px;
+      display:grid;
+      place-items:center;
+      flex: 0 0 auto;
+    }
+    .mark svg{ width:26px; height:26px; }
+    .brand-text{
+      min-width:0;
+    }
+    .brand-title{
+      font-weight: 800;
+      letter-spacing:.3px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .brand-sub{
+      font-size: 13px;
+      color: var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
-    .button {
-      background: #0077cc;
-      color: white;
-      padding: 12px 20px;
-      text-decoration: none;
-      border-radius: 5px;
-      display: inline-block;
+    .nav{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .nav a{
+      font-size: 14px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
+    .nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+
+    /* Hero */
+    .hero{
+      padding: 44px 0 22px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    .panel{
+      border: 1px solid var(--border);
+      background: rgba(15,35,67,.65);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    h1{
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height:1.12;
+    }
+    .gold{ color: var(--gold); }
+    .lead{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin: 14px 0 0;
+    }
+    .chip{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .cta-row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 16px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 700;
+      min-width: 170px;
+    }
+    .btn:hover{ background: rgba(255,255,255,.10); }
+    .btn.primary{
+      background: linear-gradient(180deg, var(--gold), #a8842f);
+      border-color: rgba(0,0,0,.15);
+      color: #1a1202;
+    }
+    .btn.primary:hover{ filter: brightness(1.02); }
+
+    /* Sections */
+    section{ padding: 18px 0; }
+    .section-title{
+      font-size: 18px;
+      margin: 0 0 10px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .card{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .card h3{
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+    .card p{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Contact box */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .contact-item{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .label{
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .value{
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    footer{
+      padding: 22px 0 34px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
       margin-top: 20px;
     }
 
-    footer {
-      background: #f2f2f2;
-      padding: 20px;
-      margin-top: 40px;
-    }
-
-    /* Mobile responsive adjustment */
-    @media (max-width: 600px) {
-      .hero {
-        padding: 40px 10px;
-      }
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
+      .contact-grid{ grid-template-columns: 1fr; }
+      .btn{ min-width: 0; flex: 1 1 180px; }
+      .nav{ gap: 6px; }
     }
   </style>
 </head>
+
 <body>
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="mark" aria-hidden="true">
+            <!-- simple chevron mark to echo the card -->
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M5 7l7-4 7 4" stroke="currentColor" stroke-width="2" />
+              <path d="M5 12l7-4 7 4" stroke="currentColor" stroke-width="2" />
+              <path d="M5 17l7-4 7 4" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <div class="brand-title">Tops Realty</div>
+            <div class="brand-sub">Management & Rentals • All boroughs of NYC</div>
+          </div>
+        </div>
 
-<header>
-  <h1>Your Name</h1>
-  <p>Licensed Broker</p>
-</header>
+        <nav class="nav" aria-label="Site navigation">
+          <a href="#services">Services</a>
+          <a href="#areas">Areas</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </div>
 
-<div class="hero">
-  <h2>I help clients succeed</h2>
-  <p>Serving [Your City]</p>
-  <a class="button" href="tel:+15551234567">Call Me</a>
-</div>
+  <main class="container">
+    <section class="hero" id="top">
+      <div class="hero-grid">
+        <div class="panel">
+          <h1>Alex Y Zinnou <span class="gold">•</span> Real Estate Broker</h1>
+          <p class="lead">
+            <strong>Tops Realty</strong> — Building Management & Apartment Rentals.<br/>
+            <span class="gold">All boroughs of NYC</span>.
+          </p>
 
-<footer>
-  <p>Email: your@email.com</p>
-</footer>
+          <div class="cta-row">
+            <a class="btn primary" href="tel:+17187721467">Call: (718) 772-1467</a>
+            <a class="btn" href="mailto:TopsRealty@Aol.com">Email: TopsRealty@Aol.com</a>
+            <a class="btn" href="mailto:Nyrac123@Aol.com">Email: Nyrac123@Aol.com</a>
+          </div>
 
+          <div class="chips" aria-label="Highlights">
+            <span class="chip">Building Management</span>
+            <span class="chip">Apartment Rentals</span>
+            <span class="chip">Tenant Support</span>
+            <span class="chip">Owner Services</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2 class="section-title">Business Info</h2>
+
+          <div class="contact-item" style="margin-bottom:12px;">
+            <div class="label">Company</div>
+            <div class="value">Beach Street Corp dba Tops Realty</div>
+          </div>
+
+          <div class="contact-item" style="margin-bottom:12px;">
+            <div class="label">Phone</div>
+            <div class="value"><a href="tel:+17187721467">(718) 772-1467</a></div>
+          </div>
+
+          <div class="contact-item">
+            <div class="label">Mailing Address</div>
+            <div class="value">1 3rd Street, Woodbury, NY 11797</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <h2 class="section-title">Services</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Apartment Rentals</h3>
+          <p>Help with vacancies, showings, screening, and smooth move-ins.</p>
+        </div>
+        <div class="card">
+          <h3>Building Management</h3>
+          <p>Day-to-day management support for owners and buildings.</p>
+        </div>
+        <div class="card">
+          <h3>Broker Support</h3>
+          <p>Real estate guidance and professional representation as needed.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="areas">
+      <h2 class="section-title">Areas Served</h2>
+      <div class="card">
+        <p style="margin:0;color:var(--muted);">
+          <strong style="color:var(--text);">All boroughs of NYC</strong> (as listed on the card).<br/>
+          Office/Mailing address: <strong style="color:var(--text);">Woodbury, NY 11797</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="panel">
+        <div class="contact-grid">
+          <div class="contact-item">
+            <div class="label">Call / Text</div>
+            <div class="value"><a href="tel:+17187721467">(718) 772-1467</a></div>
+            <div class="label">Tip: on mobile, tapping the number calls instantly.</div>
+          </div>
+
+          <div class="contact-item">
+            <div class="label">Email</div>
+            <div class="value"><a href="mailto:TopsRealty@Aol.com">TopsRealty@Aol.com</a></div>
+            <div class="value"><a href="mailto:Nyrac123@Aol.com">Nyrac123@Aol.com</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container" style="padding:0;">
+        <div><strong style="color:var(--text);">Tops Realty</strong> — Management and Rentals.</div>
+        <div>Beach Street Corp dba Tops Realty • 1 3rd Street, Woodbury, NY 11797 • (718) 772-1467</div>
+      </div>
+    </footer>
+  </main>
 </body>
 </html>
