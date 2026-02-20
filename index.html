@@ -3,31 +3,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alex Y Zinnou | Tops Realty</title>
+  <title>Alex Y Zinnou | Real Estate Broker</title>
+
+  <!-- Preload hero image for faster first paint -->
+  <link rel="preload" as="image" href="./calm_orange.jpg">
 
   <style>
     :root{
-      --navy:#0b1f3a;
-      --gold:#c7a44a;
-      --bg:#0a1323;
-      --card:#0f2343;
-      --text:#eef3ff;
-      --muted:#c9d2e8;
-      --border:rgba(255,255,255,.12);
+      /* Brand */
+      --navy: #12325a;
+      --navy-2:#0e2748;
+      --gold: #c7a44a;
+
+      /* Light theme */
+      --bg: #f6f8fc;
+      --bg-2:#eef3fb;
+      --card:#ffffff;
+      --text:#0c1b2e;
+      --muted:#4b5b73;
+      --border: rgba(14, 39, 72, 0.12);
+
+      --shadow: 0 10px 30px rgba(14,39,72,.10);
+      --shadow-2: 0 6px 18px rgba(14,39,72,.10);
+
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+
+      --maxw: 1100px;
     }
 
-    *{ box-sizing:border-box; }
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
     body{
       margin:0;
       font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, var(--bg), #070d18);
+      background: radial-gradient(1200px 600px at 20% -10%, #ffffff 0%, var(--bg) 55%, var(--bg-2) 100%);
       color: var(--text);
-      line-height:1.5;
+      line-height: 1.55;
     }
 
-    a{ color:inherit; text-decoration:none; }
+    a{ color: inherit; }
     .container{
-      max-width: 1050px;
+      max-width: var(--maxw);
       margin: 0 auto;
       padding: 0 18px;
     }
@@ -36,217 +54,344 @@
     .topbar{
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: rgba(7,13,24,.85);
-      backdrop-filter: blur(8px);
+      z-index: 50;
+      background: rgba(246,248,252,.86);
+      backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
     .topbar-inner{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
+      gap: 14px;
       padding: 12px 0;
+      flex-wrap: wrap;
     }
     .brand{
       display:flex;
       align-items:center;
-      gap:12px;
+      gap: 12px;
       min-width: 0;
     }
     .mark{
-      width:40px; height:40px;
-      border: 2px solid var(--gold);
-      border-radius: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #ffffff, #f0f4ff);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-2);
       display:grid;
       place-items:center;
       flex: 0 0 auto;
+      color: var(--navy);
     }
-    .mark svg{ width:26px; height:26px; }
-    .brand-text{
-      min-width:0;
-    }
+    .mark svg{ width: 24px; height: 24px; }
+    .brand-text{ min-width: 0; }
     .brand-title{
       font-weight: 800;
-      letter-spacing:.3px;
-      white-space:nowrap;
+      letter-spacing: .2px;
+      white-space: nowrap;
       overflow:hidden;
-      text-overflow:ellipsis;
+      text-overflow: ellipsis;
     }
     .brand-sub{
       font-size: 13px;
       color: var(--muted);
-      white-space:nowrap;
+      white-space: nowrap;
       overflow:hidden;
-      text-overflow:ellipsis;
+      text-overflow: ellipsis;
     }
 
     .nav{
       display:flex;
-      gap:14px;
-      align-items:center;
+      gap: 8px;
       flex-wrap: wrap;
       justify-content:flex-end;
+      align-items:center;
     }
     .nav a{
+      text-decoration: none;
       font-size: 14px;
-      color: var(--muted);
-      padding: 8px 10px;
-      border-radius: 10px;
+      color: var(--navy-2);
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(18,50,90,.14);
+      background: rgba(255,255,255,.70);
     }
-    .nav a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+    .nav a:hover{
+      background: rgba(255,255,255,.95);
+      box-shadow: var(--shadow-2);
+    }
 
-    /* Hero */
+    /* HERO */
     .hero{
-      padding: 44px 0 22px;
+      padding: 18px 0 10px;
     }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    .panel{
+    .hero-wrap{
+      border-radius: var(--radius-xl);
+      overflow:hidden;
+      box-shadow: var(--shadow);
       border: 1px solid var(--border);
-      background: rgba(15,35,67,.65);
-      border-radius: 18px;
-      padding: 18px;
+      background: #fff;
     }
+    .hero-media{
+      position: relative;
+      min-height: 360px;
+      background-image: url("./calm_orange.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(90deg, rgba(10,25,45,.78) 0%, rgba(10,25,45,.55) 42%, rgba(10,25,45,.18) 75%, rgba(10,25,45,0) 100%);
+    }
+    .hero-content{
+      position: relative;
+      padding: 26px 22px;
+      max-width: 700px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      font-size: 13px;
+      color: rgba(255,255,255,.86);
+      padding: 8px 10px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      border-radius: 999px;
+    }
+    .dot{
+      width: 9px; height: 9px;
+      border-radius: 99px;
+      background: var(--gold);
+      box-shadow: 0 0 0 3px rgba(199,164,74,.22);
+    }
+
     h1{
-      margin: 0 0 8px;
-      font-size: clamp(28px, 4vw, 42px);
-      line-height:1.12;
+      margin: 12px 0 8px;
+      font-size: clamp(30px, 4.5vw, 48px);
+      line-height: 1.12;
+      color: #fff;
+      letter-spacing: .2px;
     }
-    .gold{ color: var(--gold); }
-    .lead{
+    .hero-lead{
       margin: 0 0 14px;
-      color: var(--muted);
+      color: rgba(255,255,255,.88);
       font-size: 16px;
+      max-width: 60ch;
     }
+
     .chips{
       display:flex;
       flex-wrap:wrap;
-      gap:10px;
+      gap: 10px;
       margin: 14px 0 0;
     }
     .chip{
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.20);
+      background: rgba(255,255,255,.08);
       padding: 8px 10px;
       border-radius: 999px;
       font-size: 13px;
-      color: var(--muted);
+      color: rgba(255,255,255,.88);
     }
 
     .cta-row{
       display:flex;
-      gap:10px;
       flex-wrap:wrap;
+      gap: 10px;
       margin-top: 16px;
     }
     .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
+      gap: 10px;
       padding: 12px 14px;
       border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      font-weight: 700;
-      min-width: 170px;
+      border: 1px solid rgba(255,255,255,.24);
+      background: rgba(255,255,255,.10);
+      color: #fff;
+      font-weight: 800;
+      text-decoration:none;
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
     }
-    .btn:hover{ background: rgba(255,255,255,.10); }
+    .btn:hover{ background: rgba(255,255,255,.16); }
     .btn.primary{
-      background: linear-gradient(180deg, var(--gold), #a8842f);
-      border-color: rgba(0,0,0,.15);
-      color: #1a1202;
+      background: linear-gradient(180deg, var(--gold), #b18b31);
+      border-color: rgba(0,0,0,.12);
+      color: #1b1202;
     }
     .btn.primary:hover{ filter: brightness(1.02); }
 
-    /* Sections */
-    section{ padding: 18px 0; }
-    .section-title{
-      font-size: 18px;
-      margin: 0 0 10px;
+    /* Section layout */
+    section{
+      padding: 22px 0;
     }
-    .grid{
+    .section-title{
+      margin: 0 0 12px;
+      font-size: 20px;
+      color: var(--navy-2);
+      letter-spacing: .2px;
+    }
+    .section-sub{
+      margin: -6px 0 14px;
+      color: var(--muted);
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-2);
+      padding: 16px;
+    }
+
+    .grid-3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
     }
-    .card{
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      border-radius: 16px;
-      padding: 14px;
-    }
-    .card h3{
-      margin: 0 0 8px;
-      font-size: 16px;
-    }
-    .card p{
-      margin:0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    /* Contact box */
-    .contact-grid{
+    .grid-2{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
-    .contact-item{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
+
+    .card h3{
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: var(--navy-2);
     }
-    .label{
+    .card p{
+      margin: 0;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
+    }
+
+    /* Image strips */
+    .strip{
+      border-radius: var(--radius-xl);
+      overflow:hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      background: #fff;
+    }
+    .strip-media{
+      position: relative;
+      min-height: 260px;
+      background-size: cover;
+      background-position: center;
+    }
+    .strip-overlay{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(90deg, rgba(10,25,45,.68) 0%, rgba(10,25,45,.35) 55%, rgba(10,25,45,.10) 100%);
+    }
+    .strip-content{
+      position: relative;
+      padding: 18px;
+      max-width: 780px;
+      color: #fff;
+    }
+    .strip-content h2{
+      margin: 0 0 8px;
+      font-size: 22px;
+      letter-spacing: .2px;
+    }
+    .strip-content p{
+      margin:0;
+      color: rgba(255,255,255,.88);
+    }
+
+    /* Contact details */
+    .label{
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
     }
     .value{
-      font-weight: 700;
+      font-weight: 800;
+      color: var(--navy-2);
       word-break: break-word;
+    }
+    .contact-actions{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .btn-light{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(18,50,90,.18);
+      background: #ffffff;
+      color: var(--navy-2);
+      font-weight: 800;
+      text-decoration:none;
+      box-shadow: var(--shadow-2);
+      cursor:pointer;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-light:hover{ filter: brightness(0.99); }
+
+    .btn-outline{
+      background: transparent;
     }
 
     footer{
-      padding: 22px 0 34px;
+      margin-top: 18px;
+      padding: 26px 0 36px;
+      border-top: 1px solid var(--border);
       color: var(--muted);
       font-size: 13px;
-      border-top: 1px solid var(--border);
-      margin-top: 20px;
     }
 
     /* Responsive */
-    @media (max-width: 900px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      .grid{ grid-template-columns: 1fr; }
-      .contact-grid{ grid-template-columns: 1fr; }
-      .btn{ min-width: 0; flex: 1 1 180px; }
-      .nav{ gap: 6px; }
+    @media (max-width: 920px){
+      .grid-3{ grid-template-columns: 1fr; }
+      .grid-2{ grid-template-columns: 1fr; }
+      .hero-media{ min-height: 420px; }
+      .hero-overlay{
+        background: linear-gradient(180deg, rgba(10,25,45,.72) 0%, rgba(10,25,45,.40) 55%, rgba(10,25,45,.10) 100%);
+      }
+      .hero-content{ max-width: none; }
+      .nav{ justify-content: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
     }
   </style>
 </head>
 
 <body>
+  <!-- TOP NAV -->
   <div class="topbar">
     <div class="container">
       <div class="topbar-inner">
         <div class="brand">
           <div class="mark" aria-hidden="true">
-            <!-- simple chevron mark to echo the card -->
+            <!-- simple chevrons -->
             <svg viewBox="0 0 24 24" fill="none">
-              <path d="M5 7l7-4 7 4" stroke="currentColor" stroke-width="2" />
-              <path d="M5 12l7-4 7 4" stroke="currentColor" stroke-width="2" />
-              <path d="M5 17l7-4 7 4" stroke="currentColor" stroke-width="2" />
+              <path d="M5 8l7-4 7 4" stroke="currentColor" stroke-width="2" />
+              <path d="M5 13l7-4 7 4" stroke="currentColor" stroke-width="2" />
+              <path d="M5 18l7-4 7 4" stroke="currentColor" stroke-width="2" />
             </svg>
           </div>
           <div class="brand-text">
-            <div class="brand-title">Tops Realty</div>
-            <div class="brand-sub">Management & Rentals • All boroughs of NYC</div>
+            <div class="brand-title">Alex Y Zinnou</div>
+            <div class="brand-sub">Real Estate Broker • Far Rockaway + All NYC Boroughs</div>
           </div>
         </div>
 
@@ -254,98 +399,185 @@
           <a href="#services">Services</a>
           <a href="#areas">Areas</a>
           <a href="#contact">Contact</a>
+          <a href="#about">About</a>
         </nav>
       </div>
     </div>
   </div>
 
+  <!-- HERO (simple first view) -->
   <main class="container">
     <section class="hero" id="top">
-      <div class="hero-grid">
-        <div class="panel">
-          <h1>Alex Y Zinnou <span class="gold">•</span> Real Estate Broker</h1>
-          <p class="lead">
-            <strong>Tops Realty</strong> — Building Management & Apartment Rentals.<br/>
-            <span class="gold">All boroughs of NYC</span>.
-          </p>
+      <div class="hero-wrap">
+        <div class="hero-media" role="img" aria-label="New York City skyline at sunset">
+          <div class="hero-overlay"></div>
 
-          <div class="cta-row">
-            <a class="btn primary" href="tel:+17187721467">Call: (718) 772-1467</a>
-            <a class="btn" href="mailto:TopsRealty@Aol.com">Email: TopsRealty@Aol.com</a>
-            <a class="btn" href="mailto:Nyrac123@Aol.com">Email: Nyrac123@Aol.com</a>
-          </div>
+          <div class="hero-content">
+            <div class="eyebrow">
+              <span class="dot" aria-hidden="true"></span>
+              <span>NYC Rentals & Building Management</span>
+            </div>
 
-          <div class="chips" aria-label="Highlights">
-            <span class="chip">Building Management</span>
-            <span class="chip">Apartment Rentals</span>
-            <span class="chip">Tenant Support</span>
-            <span class="chip">Owner Services</span>
-          </div>
-        </div>
+            <h1>Alex Y Zinnou</h1>
+            <p class="hero-lead">
+              Real Estate Broker focused primarily in <strong>Far Rockaway</strong>, serving clients across
+              <strong>all boroughs of NYC</strong>.
+            </p>
 
-        <div class="panel">
-          <h2 class="section-title">Business Info</h2>
+            <div class="cta-row">
+              <a class="btn primary" href="tel:+17187721467" aria-label="Call Alex at 718 772 1467">
+                Call: (718) 772-1467
+              </a>
+              <a class="btn" href="#contact" aria-label="Jump to contact section">
+                Email / Contact
+              </a>
+            </div>
 
-          <div class="contact-item" style="margin-bottom:12px;">
-            <div class="label">Company</div>
-            <div class="value">Beach Street Corp dba Tops Realty</div>
-          </div>
-
-          <div class="contact-item" style="margin-bottom:12px;">
-            <div class="label">Phone</div>
-            <div class="value"><a href="tel:+17187721467">(718) 772-1467</a></div>
-          </div>
-
-          <div class="contact-item">
-            <div class="label">Mailing Address</div>
-            <div class="value">1 3rd Street, Woodbury, NY 11797</div>
+            <div class="chips" aria-label="Highlights">
+              <span class="chip">Apartment Rentals</span>
+              <span class="chip">Building Management</span>
+              <span class="chip">Tenant & Owner Support</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- SERVICES -->
     <section id="services">
       <h2 class="section-title">Services</h2>
-      <div class="grid">
+      <p class="section-sub">Clear, responsive help for rentals and property needs.</p>
+
+      <div class="grid-3">
         <div class="card">
           <h3>Apartment Rentals</h3>
-          <p>Help with vacancies, showings, screening, and smooth move-ins.</p>
+          <p>Assistance with showings, screening, and moving tenants in smoothly.</p>
         </div>
+
         <div class="card">
           <h3>Building Management</h3>
-          <p>Day-to-day management support for owners and buildings.</p>
+          <p>Support with day-to-day building operations and management coordination.</p>
         </div>
+
         <div class="card">
           <h3>Broker Support</h3>
-          <p>Real estate guidance and professional representation as needed.</p>
+          <p>Professional guidance and representation tailored to your situation.</p>
         </div>
       </div>
     </section>
 
+    <!-- IMAGE STRIP: AREAS -->
     <section id="areas">
-      <h2 class="section-title">Areas Served</h2>
-      <div class="card">
-        <p style="margin:0;color:var(--muted);">
-          <strong style="color:var(--text);">All boroughs of NYC</strong> (as listed on the card).<br/>
-          Office/Mailing address: <strong style="color:var(--text);">Woodbury, NY 11797</strong>.
-        </p>
+      <div class="strip">
+        <div class="strip-media" style="background-image:url('./vibrant_blue.jpg');" role="img" aria-label="Aerial view of Manhattan and Central Park">
+          <div class="strip-overlay"></div>
+          <div class="strip-content">
+            <h2>Areas Served</h2>
+            <p>
+              Primary focus in <strong>Far Rockaway</strong>, with service available across
+              <strong>all boroughs of NYC</strong>.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- ABOUT / COMPANY SECONDARY -->
+    <section id="about">
+      <h2 class="section-title">About</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Working with Alex</h3>
+          <p>
+            Quick communication, practical guidance, and a focus on making rentals and management
+            processes feel straightforward.
+          </p>
+          <p style="margin-top:10px;">
+            <strong style="color:var(--navy-2);">Primary area:</strong> Far Rockaway<br>
+            <strong style="color:var(--navy-2);">Coverage:</strong> All NYC boroughs
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Tops Realty (Secondary)</h3>
+          <p>
+            Alex works with <strong>Tops Realty</strong> on management and rentals.
+          </p>
+
+          <div class="contact-actions" style="margin-top:12px;">
+            <a class="btn-light btn-outline" href="https://www.topnetrealty.com/" target="_blank" rel="noopener noreferrer">
+              Visit Tops Realty Website
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGE STRIP: LIFESTYLE -->
+    <section>
+      <div class="strip">
+        <div class="strip-media" style="background-image:url('./vibrant_neutral.jpg');" role="img" aria-label="New York City skyline with water and a sailboat">
+          <div class="strip-overlay"></div>
+          <div class="strip-content">
+            <h2>Rentals with a NYC Focus</h2>
+            <p>
+              From showings to move-in, Alex helps keep things clear, timely, and organized.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
     <section id="contact">
       <h2 class="section-title">Contact</h2>
-      <div class="panel">
-        <div class="contact-grid">
-          <div class="contact-item">
-            <div class="label">Call / Text</div>
+      <p class="section-sub">Call, email, or jump straight into a message.</p>
+
+      <div class="card">
+        <div class="grid-2">
+          <div>
+            <div class="label">Phone</div>
             <div class="value"><a href="tel:+17187721467">(718) 772-1467</a></div>
-            <div class="label">Tip: on mobile, tapping the number calls instantly.</div>
+
+            <div class="contact-actions">
+              <a class="btn-light" href="tel:+17187721467">Call Now</a>
+            </div>
           </div>
 
-          <div class="contact-item">
+          <div>
             <div class="label">Email</div>
-            <div class="value"><a href="mailto:TopsRealty@Aol.com">TopsRealty@Aol.com</a></div>
-            <div class="value"><a href="mailto:Nyrac123@Aol.com">Nyrac123@Aol.com</a></div>
+            <div class="value">
+              <a href="mailto:TopsRealty@Aol.com">TopsRealty@Aol.com</a>
+            </div>
+            <div class="value" style="margin-top:6px;">
+              <a href="mailto:Nyrac123@Aol.com">Nyrac123@Aol.com</a>
+            </div>
+
+            <div class="contact-actions">
+              <!-- These are standard mailto links and WILL open the default email client -->
+              <a class="btn-light" href="mailto:TopsRealty@Aol.com?subject=Rental%20or%20Management%20Inquiry&body=Hi%20Alex%2C%0A%0AI%27m%20reaching%20out%20about%3A%0A%0A-%20Area%20(Borough%20%2F%20Neighborhood)%3A%0A-%20Type%20(Rental%20%2F%20Management)%3A%0A-%20Best%20way%20to%20reach%20me%3A%0A%0AThanks%2C">
+                Email TopsRealty@Aol.com
+              </a>
+
+              <a class="btn-light btn-outline" href="mailto:Nyrac123@Aol.com?subject=Inquiry%20for%20Alex%20Y%20Zinnou&body=Hi%20Alex%2C%0A%0AI%27d%20like%20to%20ask%20about%3A%0A%0A-%20Area%20(Borough%20%2F%20Neighborhood)%3A%0A-%20Details%3A%0A%0AThanks%2C">
+                Email Nyrac123@Aol.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGE STRIP: MANAGEMENT -->
+    <section>
+      <div class="strip">
+        <div class="strip-media" style="background-image:url('./dark_yellow.jpg');" role="img" aria-label="New York City buildings at dusk">
+          <div class="strip-overlay"></div>
+          <div class="strip-content">
+            <h2>Management & Rentals</h2>
+            <p>
+              Efficient communication and NYC experience—focused in Far Rockaway, available across all boroughs.
+            </p>
           </div>
         </div>
       </div>
@@ -353,8 +585,15 @@
 
     <footer>
       <div class="container" style="padding:0;">
-        <div><strong style="color:var(--text);">Tops Realty</strong> — Management and Rentals.</div>
-        <div>Beach Street Corp dba Tops Realty • 1 3rd Street, Woodbury, NY 11797 • (718) 772-1467</div>
+        <div style="font-weight:800;color:var(--navy-2);">Alex Y Zinnou • Real Estate Broker</div>
+        <div style="margin-top:6px;">
+          Primary: Far Rockaway • Serving all NYC boroughs •
+          <a href="tel:+17187721467">(718) 772-1467</a> •
+          <a href="mailto:TopsRealty@Aol.com">TopsRealty@Aol.com</a>
+        </div>
+        <div style="margin-top:10px;">
+          <a href="#top">Back to top</a>
+        </div>
       </div>
     </footer>
   </main>
