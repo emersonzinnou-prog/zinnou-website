@@ -320,7 +320,7 @@
     /* Contact rows */
     .row{
       display:grid;
-      grid-template-columns: 130px minmax(0,1fr) auto; /* minmax prevents wrapping issues */
+      grid-template-columns: 84px minmax(0,1fr) auto; /* tighter label spacing */
       gap: 10px;
       align-items:center;
       padding: 10px 0;
@@ -333,7 +333,6 @@
       color: var(--muted);
     }
 
-    /* Keep emails/phone on ONE LINE */
     .value{
       font-weight: 800;
       color: var(--navy2);
@@ -372,19 +371,20 @@
     .btn-light:hover{ filter: brightness(0.99); }
     .btn-outline{ background: transparent; }
 
-    /* Compact logo block that DOES NOT stretch the card */
+    /* Matching centered logo strip for BOTH cards */
     .logo-strip{
       margin-top: 12px;
       border-radius: 14px;
       border: 1px solid rgba(14,39,72,.10);
       background: linear-gradient(180deg, #ffffff, #f6f8ff);
-      padding: 12px;
+      padding: 14px;
       display:flex;
       align-items:center;
       justify-content:center;
+      min-height: 170px;
     }
     .logo-strip img{
-      max-height: 120px; /* keeps it compact */
+      max-height: 120px;
       width: auto;
       max-width: 100%;
       display:block;
@@ -430,7 +430,6 @@
       .nav{ justify-content: flex-start; }
       .header-logo img{ height: 30px; }
 
-      /* Stack contact rows nicely on mobile */
       .row{
         grid-template-columns: 1fr;
         gap: 8px;
@@ -440,7 +439,7 @@
         flex-wrap: wrap;
       }
       .value{
-        white-space: normal; /* on small screens allow wrap if needed */
+        white-space: normal;
         overflow: visible;
         text-overflow: clip;
       }
@@ -621,6 +620,10 @@
               </a>
               <button class="btn-light btn-outline" type="button" onclick="copyText('Nyrac123@Aol.com')">Copy</button>
             </div>
+          </div>
+
+          <div class="logo-strip" aria-label="New York State logo">
+            <img src="./broker_logo.png" alt="New York State logo">
           </div>
         </div>
 
