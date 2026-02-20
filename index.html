@@ -320,7 +320,7 @@
     /* Contact rows */
     .row{
       display:grid;
-      grid-template-columns: 84px minmax(0,1fr) auto; /* tighter label spacing */
+      grid-template-columns: 84px minmax(0,1fr) auto;
       gap: 10px;
       align-items:center;
       padding: 10px 0;
@@ -371,20 +371,20 @@
     .btn-light:hover{ filter: brightness(0.99); }
     .btn-outline{ background: transparent; }
 
-    /* Matching centered logo strip for BOTH cards */
+    /* Smaller, borderless logos on white background */
     .logo-strip{
       margin-top: 12px;
       border-radius: 14px;
-      border: 1px solid rgba(14,39,72,.10);
-      background: linear-gradient(180deg, #ffffff, #f6f8ff);
-      padding: 14px;
+      border: none;
+      background: #ffffff;
+      padding: 10px 0 0;
       display:flex;
       align-items:center;
       justify-content:center;
-      min-height: 170px;
+      min-height: 0;
     }
     .logo-strip img{
-      max-height: 120px;
+      max-height: 78px;        /* smaller */
       width: auto;
       max-width: 100%;
       display:block;
@@ -594,7 +594,7 @@
 
     <section id="contact">
       <h2 class="section-title">Contact</h2>
-      <p class="section-sub">Call or email.</p>
+      <p class="section-sub">Call, email, or send me a message.</p>
 
       <div class="grid-2">
         <!-- LEFT: Alex contact -->
@@ -637,6 +637,17 @@
             <div class="actions">
               <a class="btn-light no-underline" href="mailto:TopsRealty@Aol.com">Email</a>
               <button class="btn-light btn-outline" type="button" onclick="copyText('TopsRealty@Aol.com')">Copy</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="label">Website</div>
+            <a class="value no-underline" href="https://www.topnetrealty.com/" target="_blank" rel="noopener noreferrer" title="topnetrealty.com">
+              topnetrealty.com
+            </a>
+            <div class="actions">
+              <a class="btn-light no-underline" href="https://www.topnetrealty.com/" target="_blank" rel="noopener noreferrer">Visit</a>
+              <button class="btn-light btn-outline" type="button" onclick="copyText('https://www.topnetrealty.com/')">Copy</button>
             </div>
           </div>
 
