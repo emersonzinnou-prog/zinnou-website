@@ -26,7 +26,6 @@
 
       --rXL: 22px;
       --rLG: 16px;
-      --rMD: 12px;
 
       --maxw: 1100px;
     }
@@ -242,7 +241,6 @@
       border-color: rgba(0,0,0,.12);
       color: #1b1202;
     }
-    .btn.primary:hover{ filter: brightness(1.02); }
 
     /* Sections */
     section{ padding: 22px 0; }
@@ -317,37 +315,42 @@
       font-size: 22px;
       letter-spacing: .2px;
     }
-    .strip-content p{
-      margin:0;
-      color: rgba(255,255,255,.88);
-    }
+    .strip-content p{ margin:0; color: rgba(255,255,255,.88); }
 
     /* Contact rows */
     .row{
       display:grid;
-      grid-template-columns: 130px 1fr auto;
+      grid-template-columns: 130px minmax(0,1fr) auto; /* minmax prevents wrapping issues */
       gap: 10px;
       align-items:center;
       padding: 10px 0;
       border-top: 1px solid rgba(14,39,72,.10);
     }
     .row:first-child{ border-top: none; padding-top: 0; }
+
     .label{
       font-size: 12px;
       color: var(--muted);
     }
+
+    /* Keep emails/phone on ONE LINE */
     .value{
       font-weight: 800;
       color: var(--navy2);
-      word-break: break-word;
       text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
     }
+
     .actions{
       display:flex;
       gap: 8px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content:flex-end;
     }
+
     .btn-light{
       display:inline-flex;
       align-items:center;
@@ -369,16 +372,23 @@
     .btn-light:hover{ filter: brightness(0.99); }
     .btn-outline{ background: transparent; }
 
-    /* Tops logo placement */
-    .tops-logo{
-      width: 100%;
-      max-width: 320px;
-      height: auto;
-      display:block;
+    /* Compact logo block that DOES NOT stretch the card */
+    .logo-strip{
+      margin-top: 12px;
       border-radius: 14px;
       border: 1px solid rgba(14,39,72,.10);
-      box-shadow: var(--shadow2);
-      background: #fff;
+      background: linear-gradient(180deg, #ffffff, #f6f8ff);
+      padding: 12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .logo-strip img{
+      max-height: 120px; /* keeps it compact */
+      width: auto;
+      max-width: 100%;
+      display:block;
+      object-fit: contain;
     }
 
     /* Toast */
@@ -418,13 +428,22 @@
       }
       .hero-content{ max-width: none; }
       .nav{ justify-content: flex-start; }
+      .header-logo img{ height: 30px; }
 
+      /* Stack contact rows nicely on mobile */
       .row{
         grid-template-columns: 1fr;
         gap: 8px;
       }
-      .actions{ justify-content:flex-start; }
-      .header-logo img{ height: 30px; }
+      .actions{
+        justify-content:flex-start;
+        flex-wrap: wrap;
+      }
+      .value{
+        white-space: normal; /* on small screens allow wrap if needed */
+        overflow: visible;
+        text-overflow: clip;
+      }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -594,9 +613,8 @@
 
           <div class="row">
             <div class="label">Email</div>
-            <a class="value no-underline" href="mailto:Nyrac123@Aol.com">Nyrac123@Aol.com</a>
+            <a class="value no-underline" href="mailto:Nyrac123@Aol.com" title="Nyrac123@Aol.com">Nyrac123@Aol.com</a>
             <div class="actions">
-              <!-- Keep automatic draft for Alex, but keep it shorter for better Edge compatibility -->
               <a class="btn-light no-underline"
                  href="mailto:Nyrac123@Aol.com?subject=Inquiry%20for%20Alex%20Y%20Zinnou&body=Hi%20Alex%2C%0A%0AI%27m%20reaching%20out%20about%3A%0A%0AArea%3A%20%0ARequest%3A%20%0ABest%20contact%3A%20%0A%0AThanks%2C">
                 Draft email
@@ -612,16 +630,15 @@
 
           <div class="row">
             <div class="label">Email</div>
-            <a class="value no-underline" href="mailto:TopsRealty@Aol.com">TopsRealty@Aol.com</a>
+            <a class="value no-underline" href="mailto:TopsRealty@Aol.com" title="TopsRealty@Aol.com">TopsRealty@Aol.com</a>
             <div class="actions">
-              <!-- No auto-draft here -->
               <a class="btn-light no-underline" href="mailto:TopsRealty@Aol.com">Email</a>
               <button class="btn-light btn-outline" type="button" onclick="copyText('TopsRealty@Aol.com')">Copy</button>
             </div>
           </div>
 
-          <div style="margin-top:14px;">
-            <img class="tops-logo" src="./TopNetRealtyLogo.png" alt="TopNetRealty logo">
+          <div class="logo-strip" aria-label="TopNetRealty logo">
+            <img src="./TopNetRealtyLogo.png" alt="TopNetRealty logo">
           </div>
         </div>
       </div>
@@ -670,7 +687,6 @@
         await navigator.clipboard.writeText(text);
         showToast('Copied: ' + text);
       }catch(e){
-        // Fallback for older browsers
         const el = document.createElement('textarea');
         el.value = text;
         el.style.position = 'fixed';
