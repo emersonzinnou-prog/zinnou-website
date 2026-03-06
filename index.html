@@ -39,6 +39,7 @@
     }
     a{ color: inherit; }
     a.no-underline{ text-decoration:none; }
+
     /* TOPBAR */
     .topbar{
       position: sticky;
@@ -90,14 +91,17 @@
       overflow:hidden;
       text-overflow: ellipsis;
     }
+
     .nav{
       display:flex;
       gap: 8px;
       flex-wrap: wrap;
       justify-content:flex-end;
       align-items:center;
+      position: relative;
     }
-    .nav a{
+    .nav a,
+    .nav button{
       text-decoration: none;
       font-size: 14px;
       color: var(--navy2);
@@ -105,11 +109,55 @@
       border-radius: 999px;
       border: 1px solid rgba(18,50,90,.14);
       background: rgba(255,255,255,.70);
+      font-family: Arial, sans-serif;
+      cursor: pointer;
     }
-    .nav a:hover{
+    .nav a:hover,
+    .nav button:hover{
       background: rgba(255,255,255,.95);
       box-shadow: var(--shadow2);
     }
+
+    .nav-dropdown{
+      position: relative;
+    }
+
+    .dropdown-menu{
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      min-width: 260px;
+      background: rgba(255,255,255,.98);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(14,39,72,.18);
+      padding: 12px;
+      display: none;
+      z-index: 200;
+    }
+
+    .dropdown-menu.show{
+      display: block;
+    }
+
+    .dropdown-item{
+      display:block;
+      width:100%;
+      text-align:left;
+      text-decoration:none;
+      color: var(--navy2);
+      font-size: 16px;
+      padding: 14px 14px;
+      border-radius: 14px;
+      border: none;
+      background: transparent;
+      white-space: nowrap;
+    }
+
+    .dropdown-item:hover{
+      background: #f3f7fe;
+    }
+
     /* Logo in top-right */
     .header-logo{
       display:flex;
@@ -122,6 +170,7 @@
       opacity: .92;
       filter: drop-shadow(0 2px 6px rgba(14,39,72,.15));
     }
+
     /* HERO */
     .hero{ padding: 18px 0 10px; }
     .hero-wrap{
@@ -221,6 +270,7 @@
       border-color: rgba(0,0,0,.12);
       color: #1b1202;
     }
+
     /* Sections */
     section{ padding: 22px 0; }
     .section-title{
@@ -260,6 +310,7 @@
       color: var(--muted);
       font-size: 14px;
     }
+
     /* Image strips */
     .strip{
       border-radius: var(--rXL);
@@ -294,6 +345,7 @@
       margin:0;
       color: rgba(255,255,255,.88);
     }
+
     /* Contact rows */
     .row{
       display:grid;
@@ -346,6 +398,7 @@
     }
     .btn-light:hover{ filter: brightness(0.99); }
     .btn-outline{ background: transparent; }
+
     /* Smaller, borderless logos on white background */
     .logo-strip{
       margin-top: 12px;
@@ -360,12 +413,12 @@
     }
     .logo-strip img{
       max-height: 78px;
-      /* smaller */
       width: auto;
       max-width: 100%;
       display:block;
       object-fit: contain;
     }
+
     /* Toast */
     .toast{
       position: fixed;
@@ -384,6 +437,7 @@
       z-index: 999;
     }
     .toast.show{ opacity: 1; }
+
     footer{
       margin-top: 18px;
       padding: 26px 0 36px;
@@ -391,6 +445,7 @@
       color: var(--muted);
       font-size: 13px;
     }
+
     /* Responsive */
     @media (max-width: 920px){
       .grid-3{ grid-template-columns: 1fr; }
@@ -415,7 +470,13 @@
         overflow: visible;
         text-overflow: clip;
       }
+      .dropdown-menu{
+        left: 0;
+        right: auto;
+        min-width: 220px;
+      }
     }
+
     @media (prefers-reduced-motion: reduce){
       html{ scroll-behavior: auto; }
     }
@@ -438,29 +499,38 @@
             <div class="brand-sub">Real Estate Broker • Far Rockaway focus • All NYC boroughs</div>
           </div>
         </div>
+
         <div class="header-logo" aria-label="Broker logo">
           <img src="./broker_logo.png" alt="Broker logo">
         </div>
+
         <nav class="nav" aria-label="Site navigation">
           <a href="#services">Services</a>
           <a href="#areas">Areas</a>
+
+          <div class="nav-dropdown">
+            <button type="button" id="listingsToggle" aria-haspopup="true" aria-expanded="false">
+              Listings
+            </button>
+            <div class="dropdown-menu" id="listingsMenu">
+              <a class="dropdown-item" href="./4_bedroom_1.html">4_bedroom_(1)</a>
+              <a class="dropdown-item" href="./2_bedroom_1.html">2_bedroom_(1)</a>
+            </div>
+          </div>
+
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
     </div>
   </div>
+
   <main class="container">
     <section class="hero" id="top">
       <div class="hero-wrap">
         <div class="hero-media" role="img" aria-label="New York City skyline at sunset">
           <div class="hero-overlay"></div>
           <div class="hero-content">
-            <div class="cta-row">
-              <a class="btn" href="./listings.html" aria-label="See apartment listings">
-                Listings
-              </a>
-            </div>
             <div class="eyebrow">
               <span class="dot" aria-hidden="true"></span>
               <span>NYC rentals and building management</span>
@@ -486,6 +556,7 @@
         </div>
       </div>
     </section>
+
     <section id="services">
       <h2 class="section-title">Services</h2>
       <p class="section-sub">Straightforward help with rentals and property needs.</p>
@@ -504,6 +575,7 @@
         </div>
       </div>
     </section>
+
     <section id="areas">
       <div class="strip">
         <div class="strip-media" style="background-image:url('./vibrant_blue.jpg');" role="img" aria-label="Aerial view of Manhattan and Central Park">
@@ -515,6 +587,7 @@
         </div>
       </div>
     </section>
+
     <section id="about">
       <h2 class="section-title">About</h2>
       <div class="grid-2">
@@ -534,6 +607,7 @@
         </div>
       </div>
     </section>
+
     <section>
       <div class="strip">
         <div class="strip-media" style="background-image:url('./vibrant_neutral.jpg');" role="img" aria-label="New York City skyline with water and a sailboat">
@@ -545,6 +619,7 @@
         </div>
       </div>
     </section>
+
     <section id="contact">
       <h2 class="section-title">Contact</h2>
       <p class="section-sub">Call, email, or send me a message.</p>
@@ -574,6 +649,7 @@
             <img src="./broker_logo.png" alt="Broker logo">
           </div>
         </div>
+
         <!-- RIGHT: Tops Realty contact -->
         <div class="card">
           <h3>Tops Realty</h3>
@@ -600,6 +676,7 @@
         </div>
       </div>
     </section>
+
     <section>
       <div class="strip">
         <div class="strip-media" style="background-image:url('./dark_yellow.jpg');" role="img" aria-label="New York City buildings at dusk">
@@ -611,6 +688,7 @@
         </div>
       </div>
     </section>
+
     <footer>
       <div class="container" style="padding:0;">
         <div style="font-weight:800;color:var(--navy2);">Alex Y Zinnou • Real Estate Broker</div>
@@ -623,7 +701,9 @@
       </div>
     </footer>
   </main>
+
   <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+
   <script>
     function showToast(msg){
       const t = document.getElementById('toast');
@@ -632,6 +712,7 @@
       window.clearTimeout(window.__toastTimer);
       window.__toastTimer = window.setTimeout(() => t.classList.remove('show'), 1200);
     }
+
     async function copyText(text){
       try{
         await navigator.clipboard.writeText(text);
@@ -648,6 +729,29 @@
         showToast('Copied: ' + text);
       }
     }
+
+    const listingsToggle = document.getElementById('listingsToggle');
+    const listingsMenu = document.getElementById('listingsMenu');
+
+    listingsToggle.addEventListener('click', function(e){
+      e.stopPropagation();
+      const isOpen = listingsMenu.classList.toggle('show');
+      listingsToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', function(e){
+      if (!listingsMenu.contains(e.target) && e.target !== listingsToggle){
+        listingsMenu.classList.remove('show');
+        listingsToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape'){
+        listingsMenu.classList.remove('show');
+        listingsToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
   </script>
 </body>
 </html>
