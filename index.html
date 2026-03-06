@@ -4,32 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alex Y Zinnou | Real Estate Broker</title>
-
   <link rel="preload" as="image" href="./calm_orange.jpg">
   <link rel="preload" as="image" href="./broker_logo.png">
-
   <style>
     :root{
       --navy: #12325a;
       --navy2:#0e2748;
       --gold: #c7a44a;
-
       --bg: #f6f8fc;
       --bg2:#eef3fb;
       --card:#ffffff;
       --text:#0c1b2e;
       --muted:#4b5b73;
       --border: rgba(14, 39, 72, 0.12);
-
       --shadow: 0 10px 30px rgba(14,39,72,.10);
       --shadow2: 0 6px 18px rgba(14,39,72,.10);
-
       --rXL: 22px;
       --rLG: 16px;
-
       --maxw: 1100px;
     }
-
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
     body{
@@ -39,16 +32,14 @@
       color: var(--text);
       line-height:1.55;
     }
-
     .container{
       max-width: var(--maxw);
       margin: 0 auto;
       padding: 0 18px;
     }
-
     a{ color: inherit; }
     a.no-underline{ text-decoration:none; }
-
+    /* TOPBAR */
     .topbar{
       position: sticky;
       top: 0;
@@ -57,7 +48,6 @@
       backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
     }
-
     .topbar-inner{
       display:flex;
       align-items:center;
@@ -66,14 +56,12 @@
       padding: 12px 0;
       flex-wrap: wrap;
     }
-
     .brand{
       display:flex;
       align-items:center;
       gap: 12px;
       min-width: 0;
     }
-
     .mark{
       width: 40px;
       height: 40px;
@@ -87,7 +75,6 @@
       color: var(--navy);
     }
     .mark svg{ width:24px; height:24px; }
-
     .brand-text{ min-width:0; }
     .brand-title{
       font-weight: 800;
@@ -103,7 +90,6 @@
       overflow:hidden;
       text-overflow: ellipsis;
     }
-
     .nav{
       display:flex;
       gap: 8px;
@@ -124,7 +110,7 @@
       background: rgba(255,255,255,.95);
       box-shadow: var(--shadow2);
     }
-
+    /* Logo in top-right */
     .header-logo{
       display:flex;
       align-items:center;
@@ -136,7 +122,7 @@
       opacity: .92;
       filter: drop-shadow(0 2px 6px rgba(14,39,72,.15));
     }
-
+    /* HERO */
     .hero{ padding: 18px 0 10px; }
     .hero-wrap{
       border-radius: var(--rXL);
@@ -163,7 +149,6 @@
       max-width: 700px;
       color: #fff;
     }
-
     .eyebrow{
       display:inline-flex;
       align-items:center;
@@ -176,12 +161,12 @@
       color: rgba(255,255,255,.90);
     }
     .dot{
-      width: 9px; height: 9px;
+      width: 9px;
+      height: 9px;
       border-radius: 99px;
       background: var(--gold);
       box-shadow: 0 0 0 3px rgba(199,164,74,.22);
     }
-
     h1{
       margin: 12px 0 8px;
       font-size: clamp(30px, 4.5vw, 48px);
@@ -194,7 +179,20 @@
       color: rgba(255,255,255,.88);
       max-width: 60ch;
     }
-
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin: 14px 0 0;
+    }
+    .chip{
+      border: 1px solid rgba(255,255,255,.20);
+      background: rgba(255,255,255,.08);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      color: rgba(255,255,255,.88);
+    }
     .cta-row{
       display:flex;
       flex-wrap:wrap;
@@ -223,7 +221,7 @@
       border-color: rgba(0,0,0,.12);
       color: #1b1202;
     }
-
+    /* Sections */
     section{ padding: 22px 0; }
     .section-title{
       margin: 0 0 12px;
@@ -235,7 +233,6 @@
       margin: -6px 0 14px;
       color: var(--muted);
     }
-
     .card{
       background: var(--card);
       border: 1px solid var(--border);
@@ -243,13 +240,16 @@
       box-shadow: var(--shadow2);
       padding: 16px;
     }
-
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
     .grid-2{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
-
     .card h3{
       margin: 0 0 8px;
       font-size: 16px;
@@ -260,49 +260,72 @@
       color: var(--muted);
       font-size: 14px;
     }
-
-    .detail-box{
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: #f8fbff;
-      border: 1px solid rgba(18,50,90,.10);
-      margin-top: 10px;
+    /* Image strips */
+    .strip{
+      border-radius: var(--rXL);
+      overflow:hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      background: #fff;
     }
-
-    .detail-label{
+    .strip-media{
+      position: relative;
+      min-height: 260px;
+      background-size: cover;
+      background-position: center;
+    }
+    .strip-overlay{
+      position:absolute;
+      inset:0;
+      background: linear-gradient(90deg, rgba(10,25,45,.68) 0%, rgba(10,25,45,.35) 55%, rgba(10,25,45,.10) 100%);
+    }
+    .strip-content{
+      position: relative;
+      padding: 18px;
+      max-width: 780px;
+      color: #fff;
+    }
+    .strip-content h2{
+      margin: 0 0 8px;
+      font-size: 22px;
+      letter-spacing: .2px;
+    }
+    .strip-content p{
+      margin:0;
+      color: rgba(255,255,255,.88);
+    }
+    /* Contact rows */
+    .row{
+      display:grid;
+      grid-template-columns: 84px minmax(0,1fr) auto;
+      gap: 10px;
+      align-items:center;
+      padding: 10px 0;
+      border-top: 1px solid rgba(14,39,72,.10);
+    }
+    .row:first-child{
+      border-top: none;
+      padding-top: 0;
+    }
+    .label{
       font-size: 12px;
       color: var(--muted);
-      margin-bottom: 4px;
     }
-
-    .detail-value{
+    .value{
       font-weight: 800;
       color: var(--navy2);
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
     }
-
-    .video-wrap{
-      overflow:hidden;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: #000;
-      box-shadow: var(--shadow2);
-      margin-top: 10px;
-    }
-
-    video{
-      display:block;
-      width:100%;
-      height:auto;
-      background:#000;
-    }
-
-    .listing-actions{
+    .actions{
       display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top: 14px;
+      gap: 8px;
+      flex-wrap: nowrap;
+      justify-content:flex-end;
     }
-
     .btn-light{
       display:inline-flex;
       align-items:center;
@@ -322,7 +345,45 @@
       white-space: nowrap;
     }
     .btn-light:hover{ filter: brightness(0.99); }
-
+    .btn-outline{ background: transparent; }
+    /* Smaller, borderless logos on white background */
+    .logo-strip{
+      margin-top: 12px;
+      border-radius: 14px;
+      border: none;
+      background: #ffffff;
+      padding: 10px 0 0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height: 0;
+    }
+    .logo-strip img{
+      max-height: 78px;
+      /* smaller */
+      width: auto;
+      max-width: 100%;
+      display:block;
+      object-fit: contain;
+    }
+    /* Toast */
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      background: rgba(14,39,72,.92);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.20);
+      opacity: 0;
+      pointer-events:none;
+      transition: opacity .2s ease;
+      z-index: 999;
+    }
+    .toast.show{ opacity: 1; }
     footer{
       margin-top: 18px;
       padding: 26px 0 36px;
@@ -330,8 +391,9 @@
       color: var(--muted);
       font-size: 13px;
     }
-
+    /* Responsive */
     @media (max-width: 920px){
+      .grid-3{ grid-template-columns: 1fr; }
       .grid-2{ grid-template-columns: 1fr; }
       .hero-media{ min-height: 420px; }
       .hero-overlay{
@@ -340,10 +402,25 @@
       .hero-content{ max-width: none; }
       .nav{ justify-content: flex-start; }
       .header-logo img{ height: 30px; }
+      .row{
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .actions{
+        justify-content:flex-start;
+        flex-wrap: wrap;
+      }
+      .value{
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+      }
+    }
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior: auto; }
     }
   </style>
 </head>
-
 <body>
   <div class="topbar">
     <div class="container">
@@ -361,124 +438,216 @@
             <div class="brand-sub">Real Estate Broker • Far Rockaway focus • All NYC boroughs</div>
           </div>
         </div>
-
         <div class="header-logo" aria-label="Broker logo">
           <img src="./broker_logo.png" alt="Broker logo">
         </div>
-
         <nav class="nav" aria-label="Site navigation">
-          <a href="./index.html">Home</a>
-          <a href="./listings.html">Listings</a>
-          <a href="#videos">Videos</a>
-          <a href="./index.html#contact">Contact</a>
+          <a href="#services">Services</a>
+          <a href="#areas">Areas</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
         </nav>
       </div>
     </div>
   </div>
-
   <main class="container">
     <section class="hero" id="top">
       <div class="hero-wrap">
         <div class="hero-media" role="img" aria-label="New York City skyline at sunset">
           <div class="hero-overlay"></div>
-
           <div class="hero-content">
+            <div class="cta-row">
+              <a class="btn" href="./listings.html" aria-label="See apartment listings">
+                Listings
+              </a>
+            </div>
             <div class="eyebrow">
               <span class="dot" aria-hidden="true"></span>
-              <span>Apartment listing</span>
+              <span>NYC rentals and building management</span>
             </div>
-
             <h1>Alex Y Zinnou</h1>
             <p class="hero-lead">
-              4_bedroom_1<br>
-              25-03 Ocean Crest Blvd<br>
-              Far Rockaway, NY 11691
+              Real estate broker with a primary focus in Far Rockaway. Service available across all boroughs of NYC.
             </p>
-
             <div class="cta-row">
-              <a class="btn primary" href="#videos">Watch Videos</a>
-              <a class="btn" href="./listings.html">Back to Listings</a>
+              <a class="btn primary" href="tel:+17187721467" aria-label="Call Alex at 718 772 1467">
+                Call: (718) 772-1467
+              </a>
+              <a class="btn" href="#contact" aria-label="Go to contact section">
+                Contact
+              </a>
+            </div>
+            <div class="chips" aria-label="Highlights">
+              <span class="chip">Apartment rentals</span>
+              <span class="chip">Building management</span>
+              <span class="chip">Tenant and owner support</span>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <section id="details">
-      <h2 class="section-title">Listing Details</h2>
-      <p class="section-sub">Dedicated apartment page for this property.</p>
-
-      <div class="grid-2">
+    <section id="services">
+      <h2 class="section-title">Services</h2>
+      <p class="section-sub">Straightforward help with rentals and property needs.</p>
+      <div class="grid-3">
         <div class="card">
-          <h3>Property Information</h3>
-
-          <div class="detail-box">
-            <div class="detail-label">Listing Name</div>
-            <div class="detail-value">4_bedroom_1</div>
-          </div>
-
-          <div class="detail-box">
-            <div class="detail-label">Address</div>
-            <div class="detail-value">25-03 Ocean Crest Blvd</div>
-          </div>
-
-          <div class="detail-box">
-            <div class="detail-label">City / State / ZIP</div>
-            <div class="detail-value">Far Rockaway, NY 11691</div>
-          </div>
+          <h3>Apartment Rentals</h3>
+          <p>Support with showings, screening, and smoother move-ins.</p>
         </div>
-
         <div class="card">
-          <h3>Contact About This Listing</h3>
-          <p>Use the buttons below to ask about this apartment.</p>
-
-          <div class="listing-actions">
-            <a class="btn-light no-underline" href="tel:+17187721467">Call Alex</a>
-            <a class="btn-light no-underline" href="mailto:Nyrac123@aol.com?subject=Inquiry%20about%204_bedroom_1">Email Alex</a>
-            <a class="btn-light no-underline" href="./listings.html">View All Listings</a>
+          <h3>Building Management</h3>
+          <p>Day-to-day coordination and reliable communication.</p>
+        </div>
+        <div class="card">
+          <h3>Broker Support</h3>
+          <p>Clear guidance and professional representation when needed.</p>
+        </div>
+      </div>
+    </section>
+    <section id="areas">
+      <div class="strip">
+        <div class="strip-media" style="background-image:url('./vibrant_blue.jpg');" role="img" aria-label="Aerial view of Manhattan and Central Park">
+          <div class="strip-overlay"></div>
+          <div class="strip-content">
+            <h2>Areas Served</h2>
+            <p> Primary focus in Far Rockaway. Service available across all boroughs of NYC. </p>
           </div>
         </div>
       </div>
     </section>
-
-    <section id="videos">
-      <h2 class="section-title">Video Tours</h2>
-      <p class="section-sub">Walkthrough videos for this apartment.</p>
-
+    <section id="about">
+      <h2 class="section-title">About</h2>
       <div class="grid-2">
         <div class="card">
-          <h3>4_bedroom.mp4</h3>
-          <div class="video-wrap">
-            <video controls preload="metadata">
-              <source src="./4_bedroom.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
+          <h3>Working with Alex</h3>
+          <p>Dedicated support for rentals and management.</p>
+          <p style="margin-top:10px;">Quick communication. Practical guidance. Clear next steps.</p>
         </div>
-
         <div class="card">
-          <h3>4_bedroom_long.mp4</h3>
-          <div class="video-wrap">
-            <video controls preload="metadata">
-              <source src="./4_bedroom_long.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+          <h3>Tops Realty</h3>
+          <p>Alex works with Tops Realty on management and rentals.</p>
+          <div style="margin-top:12px;">
+            <a class="btn-light btn-outline no-underline" href="https://www.topnetrealty.com/" target="_blank" rel="noopener noreferrer">
+              Visit Tops Realty Website
+            </a>
           </div>
         </div>
       </div>
     </section>
-
+    <section>
+      <div class="strip">
+        <div class="strip-media" style="background-image:url('./vibrant_neutral.jpg');" role="img" aria-label="New York City skyline with water and a sailboat">
+          <div class="strip-overlay"></div>
+          <div class="strip-content">
+            <h2>Rentals with a NYC Focus</h2>
+            <p>Clear communication from first message to move-in.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">Call, email, or send me a message.</p>
+      <div class="grid-2">
+        <!-- LEFT: Alex contact -->
+        <div class="card">
+          <h3>Alex Y Zinnou</h3>
+          <div class="row">
+            <div class="label">Phone</div>
+            <a class="value no-underline" href="tel:+17187721467">(718) 772-1467</a>
+            <div class="actions">
+              <a class="btn-light no-underline" href="tel:+17187721467">Call</a>
+              <button class="btn-light btn-outline" type="button" onclick="copyText('(718) 772-1467')">Copy</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="label">Email</div>
+            <a class="value no-underline" href="mailto:Nyrac123@aol.com" title="Nyrac123@aol.com">Nyrac123@aol.com</a>
+            <div class="actions">
+              <a class="btn-light no-underline" href="mailto:Nyrac123@aol.com?subject=Inquiry%20for%20Alex%20Y%20Zinnou&body=Hi%20Alex%2C%0A%0AI%27m%20reaching%20out%20about%3A%0A%0AArea%3A%20%0ARequest%3A%20%0ABest%20contact%3A%20%0A%0AThanks%2C">
+                Draft email
+              </a>
+              <button class="btn-light btn-outline" type="button" onclick="copyText('Nyrac123@aol.com')">Copy</button>
+            </div>
+          </div>
+          <div class="logo-strip" aria-label="Broker logo">
+            <img src="./broker_logo.png" alt="Broker logo">
+          </div>
+        </div>
+        <!-- RIGHT: Tops Realty contact -->
+        <div class="card">
+          <h3>Tops Realty</h3>
+          <div class="row">
+            <div class="label">Email</div>
+            <a class="value no-underline" href="mailto:TopsRealty@aol.com" title="TopsRealty@aol.com">TopsRealty@aol.com</a>
+            <div class="actions">
+              <a class="btn-light no-underline" href="mailto:TopsRealty@aol.com">Email</a>
+              <button class="btn-light btn-outline" type="button" onclick="copyText('TopsRealty@aol.com')">Copy</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="label">Website</div>
+            <a class="value no-underline" href="#top" title="Back to top">
+              Back to top
+            </a>
+            <div class="actions">
+              <a class="btn-light no-underline" href="#top">Go</a>
+            </div>
+          </div>
+          <div class="logo-strip" aria-label="Broker logo">
+            <img src="./broker_logo.png" alt="Broker logo">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="strip">
+        <div class="strip-media" style="background-image:url('./dark_yellow.jpg');" role="img" aria-label="New York City buildings at dusk">
+          <div class="strip-overlay"></div>
+          <div class="strip-content">
+            <h2>Management and Rentals</h2>
+            <p>Organized support with clear communication across NYC.</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <footer>
       <div class="container" style="padding:0;">
         <div style="font-weight:800;color:var(--navy2);">Alex Y Zinnou • Real Estate Broker</div>
         <div style="margin-top:6px;">
-          4_bedroom_1 • 25-03 Ocean Crest Blvd • Far Rockaway, NY 11691
+          Far Rockaway focus • All NYC boroughs • <a href="tel:+17187721467">(718) 772-1467</a> • <a href="mailto:Nyrac123@aol.com">Nyrac123@aol.com</a>
         </div>
         <div style="margin-top:10px;">
-          <a href="./listings.html">Back to listings</a>
+          <a href="#top">Back to top</a>
         </div>
       </div>
     </footer>
   </main>
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+  <script>
+    function showToast(msg){
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      window.clearTimeout(window.__toastTimer);
+      window.__toastTimer = window.setTimeout(() => t.classList.remove('show'), 1200);
+    }
+    async function copyText(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast('Copied: ' + text);
+      }catch(e){
+        const el = document.createElement('textarea');
+        el.value = text;
+        el.style.position = 'fixed';
+        el.style.left = '-9999px';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        showToast('Copied: ' + text);
+      }
+    }
+  </script>
 </body>
 </html>
